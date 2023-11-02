@@ -19,6 +19,7 @@
   "homepage": "https://github.com/AIO-Develope/AIO-Radio#readme",
   "dependencies": {
     "discord.js": "^14.12.1",
+    "dotenv": "^16.3.1",
     "nodemon": "^3.0.1"
   }
 }
