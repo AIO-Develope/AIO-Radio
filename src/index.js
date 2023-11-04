@@ -1,8 +1,5 @@
+require('dotenv').config();
 const { Client, IntentsBitField } = require('discord.js')
-const { config } = require('dotenv')
-
-config();
-
 
 const client = new Client({
     intents: [
