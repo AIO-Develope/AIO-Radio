@@ -1,13 +1,9 @@
-import { config } from 'dotenv';
-import { Client } from 'discord.js';
-config();
+require('dotenv').config();
+const { Client, IntentsBitField } = require('discord.js')
 
 const client = new Client({
     intents: [
-        "Guilds",
-        "MessageContent",
-        "GuildMessages"
-
+        IntentsBitField.Flags.Guilds
     ]
 
 })
@@ -15,10 +11,6 @@ const client = new Client({
 client.on('ready', (c) =>{
     console.log("test")
 });
-
-client.on('messageCreate', (message) =>{
-    console.log(message.content)
-})
 
 
 client.login(process.env.BOT_TOKEN)
