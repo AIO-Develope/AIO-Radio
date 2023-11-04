@@ -1,11 +1,20 @@
-require('dotenv').config();
-const { REST, Routes } = require('discord.js');
-
+import { config } from 'dotenv';
+import { REST, Routes } from 'discord.js';
+config();
 
 const commands = [
     {
-        name: 'hey',
-        description: 'Replies',
+        name: 'setup',
+        description: 'Setup the vc it should join',
+        options: [
+            {
+                name: 'first-number',
+                description: 'the first number',
+                type: 'CHANNEL',
+                channel_types: [2],
+                require: true,
+            }
+        ],
     },
 ];
 
