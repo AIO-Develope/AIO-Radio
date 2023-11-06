@@ -27,6 +27,7 @@ permissionsRequired: [PermissionFlagsBits.Administrator],
 
         if (channelObject.type === 2){
             interaction.reply(`Bot is now set to channel ${channelObject.name}`)
+            
 
         }else{
             interaction.reply(`${channelObject.name} is not a voice channel!`)
