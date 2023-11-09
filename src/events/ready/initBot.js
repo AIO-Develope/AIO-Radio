@@ -1,8 +1,5 @@
-
-const fs = require('fs');
-
 module.exports = (client) => {
-
+  const fs = require('fs');
 
     // Define the path to your data file
     const filePath = 'data.json';
@@ -28,5 +25,48 @@ module.exports = (client) => {
         console.error(`Error parsing JSON data: ${parseError}`);
       }
     });
+
+      // Function to join the voice channel
+  function joinVoiceChannel(guildId, channelId) {
+    const guild = client.guilds.cache.get(guildId);
+    if (!guild) {
+        console.error(`Guild with ID ${guildId} not found.`);
+        return;
+    }
+
+    const channel = guild.channels.cache.get(channelId);
+    if (!channel || channel.type !== 'voice') {
+        console.error(`Voice channel with ID ${channelId} not found or invalid.`);
+        return;
+    }
+
+    channel.join().then(connection => {
+        console.log(`Successfully joined ${channel.name} in ${guild.name}`);
+        // You can do more here, like playing music or whatever you want
+    }).catch(error => {
+        console.error(`Error joining voice channel: ${error}`);
+    });
+}
+
+
+// Function to iterate through data.json and join voice channels
+function joinVoiceChannels() {
+  readData((err, jsonData) => {
+      if (err) {
+          return;
+      }
+
+      // Iterate through each guild/channel pair in data.json
+      Object.entries(jsonData).forEach(([guildId, channelId]) => {
+          joinVoiceChannel(guildId, channelId);
+      });
+  });
+}
+// Join voice channels on bot startup
+
+  joinVoiceChannels();
+
+
+
     
 };
